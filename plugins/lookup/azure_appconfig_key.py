@@ -57,7 +57,7 @@ EXAMPLE = """
 
 RETURN = """
   _raw:
-    description: secret content string
+    description: key content string
 """
 
 from ansible_collections.azure.azcollection.plugins.module_utils.azure_rm_common import AzureRMAuth
@@ -74,12 +74,6 @@ try:
 
 except ImportError:
     pass
-
-display = Display()
-
-TOKEN_ACQUIRED = False
-
-logger = logging.getLogger("azure.identity").setLevel(logging.ERROR)
 
 
 class LookupModule(LookupBase):
