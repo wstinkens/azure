@@ -7,7 +7,7 @@ __metaclass__ = type
 
 DOCUMENTATION = """
 ---
-name: azure_keyvault_secret
+name: azure_appconfig_key
 author:
     - Wouter Stinkens (@wstinkens)
 version_added: '3.20.0'
@@ -16,7 +16,6 @@ requirements:
 short_description: Read key from Azure App Configuration.
 description:
   - This lookup returns the content of key saved in Azure App Configuration.
-  - When ansible host is MSI enabled Azure VM, user don't need provide any credential to access to Azure App Configuration.
 options:
     _terms:
         description: Key name to lookup.
@@ -30,17 +29,11 @@ options:
         description: Endpoint of Azure App Configuration.
         required: True
     client_id:
-        aliases:
-        - azure_client_id
+        description: Client ID of Azure service principal.
     secret:
-        aliases:
-        - azure_secret
+        description: Secret of Azure service principal.
     tenant:
-        aliases:
-        - azure_tenant
-    cloud_environment:
-        aliases:
-        - azure_cloud_environment
+        description: Tenant ID of Azure service principal.
     use_cli:
         description:
           - When I(use_cli=True), get the 'az login' credential authentication, default if false.
