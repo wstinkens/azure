@@ -49,10 +49,18 @@ extends_documentation_fragment:
 """
 
 EXAMPLE = """
+- name: Look up key
+  debug:
+    msg: msg: "{{ lookup('azure.azcollection.azure_appconfig_key', 'keyName', label_filter='labelValue', app_config_endpoint=app_config_endpoint')}}"
+- name: Look up key with tag filters
+  debug:
+    msg: msg: "{{ lookup('azure.azcollection.azure_appconfig_key', 'keyName', label_filter='labelValue', tag_filters='tag1=value1,tag2=value2', app_config_endpoint=app_config_endpoint)}}"
 - name: Look up key when azure cli login
   debug:
     msg: msg: "{{ lookup('azure.azcollection.azure_appconfig_key', 'keyName', label_filter='labelValue', app_config_endpoint=app_config_endpoint, auth_source='cli')}}"
-
+- name: Look up key using service principal
+  debug:
+    msg: msg: "{{ lookup('azure.azcollection.azure_appconfig_key', 'keyName', label_filter='labelValue', app_config_endpoint=app_config_endpoint, client_id=client_id, secret=secret, tenant=tenant)}}"
 """
 
 RETURN = """
