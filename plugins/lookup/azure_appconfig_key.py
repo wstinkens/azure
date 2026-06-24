@@ -121,8 +121,8 @@ class LookupModule(LookupBase):
                 else:
                     selects = {SettingSelector(key_filter=term, label_filter=label_filter)}
                 config = load(endpoint=app_config_endpoint, credential=azure_auth.azure_credential_track2, selects=selects, key_vault_options=key_vault_options)
-
-                ret.append(config.values())
+                if term in config:
+                    ret.append(config[term])
             except Exception:
                 raise AnsibleError('Failed to fetch key ' + term + ' with label ' + str(label_filter) + ' from ' + app_config_endpoint + '.')
         return ret
